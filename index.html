@@ -235,7 +235,7 @@
 
     .stats-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 0.4rem;
         margin-bottom: 1.2rem;
     }
@@ -251,6 +251,11 @@
     .stat-card.highlight {
         background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
         border-color: rgba(201, 169, 97, 0.25);
+    }
+
+    .stat-card.total {
+        background: linear-gradient(135deg, rgba(74, 222, 128, 0.05) 0%, var(--bg-card) 100%);
+        border-color: rgba(74, 222, 128, 0.2);
     }
 
     .stat-label {
@@ -273,6 +278,10 @@
         background: linear-gradient(135deg, var(--gold-light), var(--gold));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+    }
+
+    .stat-value.green {
+        color: var(--success);
     }
 
     .section {
@@ -524,7 +533,7 @@
 
     @media (max-width: 769px) {
         .app-container { padding: 1.2rem 1rem; }
-        .stats-grid { gap: 0.3rem; }
+        .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.3rem; }
         .stat-card { padding: 0.8rem; }
         .stat-value { font-size: 1.3rem; }
         .section { padding: 1rem; }
@@ -648,6 +657,10 @@
         <div class="stat-card highlight">
             <div class="stat-label">Pozo</div>
             <div class="stat-value gold" id="pozoAmount">S/ 0.00</div>
+        </div>
+        <div class="stat-card total">
+            <div class="stat-label">Total propinas</div>
+            <div class="stat-value green" id="totalAmount">S/ 0.00</div>
         </div>
         <div class="stat-card">
             <div class="stat-label">Días</div>
@@ -935,21 +948,13 @@
         renderAll();
     }
 
-    // LÓGICA DEL POZO CORREGIDA
     function calcDayDistribution(day) {
         const totalStaff = staff.length;
         if (totalStaff === 0) return { perPerson: 0, toPozo: day.amount, presentes: 0 };
         
-        // Cada persona recibe su parte del total
         const perPerson = day.amount / totalStaff;
-        
-        // Contar presentes
         const presentes = staff.filter(s => day.attendance[s] === 'presente').length;
-        
-        // Lo que se distribuye
         const distributed = perPerson * presentes;
-        
-        // Lo que va al pozo (parte de los que no reciben)
         const toPozo = day.amount - distributed;
         
         return { perPerson, toPozo, presentes };
@@ -980,6 +985,10 @@
         return total;
     }
 
+    function calcTotalAmount() {
+        return days.reduce((sum, day) => sum + day.amount, 0);
+    }
+
     function renderAll() {
         renderStats();
         renderStaff();
@@ -989,7 +998,9 @@
 
     function renderStats() {
         const pozo = calcPozo();
+        const total = calcTotalAmount();
         document.getElementById('pozoAmount').textContent = `S/ ${pozo.toFixed(2)}`;
+        document.getElementById('totalAmount').textContent = `S/ ${total.toFixed(2)}`;
         document.getElementById('statDays').textContent = days.length;
         document.getElementById('statStaff').textContent = staff.length;
     }
