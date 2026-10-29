@@ -901,8 +901,7 @@
         const day = days.find(d => d.id === id);
         if (day) {
             day.amount = parseFloat(value) || 0;
-            renderSummary();
-            renderStats();
+            renderAll();
         }
     }
 
@@ -915,9 +914,7 @@
         else if (current === 'tarde') day.attendance[name] = 'permiso';
         else day.attendance[name] = 'presente';
         
-        renderDays();
-        renderSummary();
-        renderStats();
+        renderAll();
     }
 
     function addStaff() {
@@ -938,19 +935,21 @@
         renderAll();
     }
 
-    // LÓGICA CORREGIDA DEL POZO
+    // LÓGICA DEL POZO CORREGIDA
     function calcDayDistribution(day) {
         const totalStaff = staff.length;
         if (totalStaff === 0) return { perPerson: 0, toPozo: day.amount, presentes: 0 };
         
-        // Cada persona recibe su parte del total (dividido entre TODO el personal)
+        // Cada persona recibe su parte del total
         const perPerson = day.amount / totalStaff;
         
-        // Los presentes reciben, los que no (tarde/permiso) NO reciben
+        // Contar presentes
         const presentes = staff.filter(s => day.attendance[s] === 'presente').length;
+        
+        // Lo que se distribuye
         const distributed = perPerson * presentes;
         
-        // Lo que no se distribuye va al pozo
+        // Lo que va al pozo (parte de los que no reciben)
         const toPozo = day.amount - distributed;
         
         return { perPerson, toPozo, presentes };
