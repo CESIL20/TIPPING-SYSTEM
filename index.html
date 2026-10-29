@@ -34,7 +34,7 @@
             radial-gradient(at 80% 80%, rgba(245, 158, 11, 0.06) 0px, transparent 50%);
     }
 
-    /* ============ LOGIN PREMIUM (MEJORADO) ============ */
+    /* ============ LOGIN PREMIUM ============ */
     .login-overlay {
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
         background: rgba(0, 0, 0, 0.6);
@@ -50,9 +50,7 @@
         border-radius: 28px;
         padding: 2.5rem 2rem;
         width: 90%; max-width: 420px;
-        box-shadow: 
-            0 25px 50px -12px rgba(0, 0, 0, 0.6),
-            0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
         backdrop-filter: blur(24px);
         text-align: center;
         animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -71,7 +69,6 @@
     }
 
     .login-modal > * { position: relative; z-index: 1; }
-
     @keyframes rotate { to { transform: rotate(360deg); } }
 
     .modal-logo {
@@ -86,19 +83,11 @@
     }
 
     .modal-title { 
-        font-size: 1.75rem; 
-        font-weight: 700; 
-        margin-bottom: 0.4rem; 
-        letter-spacing: -0.5px;
+        font-size: 1.75rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.5px;
         background: linear-gradient(135deg, #fff, #cbd5e1);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .modal-subtitle { 
-        color: var(--text-secondary); 
-        font-size: 0.9rem; 
-        margin-bottom: 2rem;
-    }
+    .modal-subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 2rem; }
 
     .role-selector { display: flex; flex-direction: column; gap: 0.9rem; }
 
@@ -120,14 +109,8 @@
         transform: translateY(-3px);
     }
 
-    .role-btn.master:hover { 
-        border-color: var(--accent-gold); 
-        box-shadow: 0 10px 30px -5px var(--accent-gold-glow);
-    }
-    .role-btn.client:hover { 
-        border-color: var(--accent-blue); 
-        box-shadow: 0 10px 30px -5px var(--accent-blue-glow);
-    }
+    .role-btn.master:hover { border-color: var(--accent-gold); box-shadow: 0 10px 30px -5px var(--accent-gold-glow); }
+    .role-btn.client:hover { border-color: var(--accent-blue); box-shadow: 0 10px 30px -5px var(--accent-blue-glow); }
 
     .role-icon {
         width: 52px; height: 52px; border-radius: 14px;
@@ -137,13 +120,11 @@
     
     .master .role-icon { 
         background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.05));
-        color: var(--accent-gold);
-        border: 1px solid rgba(245, 158, 11, 0.3);
+        color: var(--accent-gold); border: 1px solid rgba(245, 158, 11, 0.3);
     }
     .client .role-icon { 
         background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.05));
-        color: var(--accent-blue);
-        border: 1px solid rgba(59, 130, 246, 0.3);
+        color: var(--accent-blue); border: 1px solid rgba(59, 130, 246, 0.3);
     }
 
     .role-info h3 { font-size: 1rem; font-weight: 600; margin-bottom: 3px; }
@@ -151,7 +132,6 @@
     .role-btn .arrow { margin-left: auto; color: var(--text-secondary); transition: transform 0.3s; }
     .role-btn:hover .arrow { transform: translateX(4px); color: white; }
 
-    /* PIN Input */
     .pin-area { display: none; animation: fadeIn 0.4s ease; }
     .pin-area.active { display: block; }
     .role-selector.hidden { display: none; }
@@ -163,20 +143,13 @@
         border: 1px solid var(--glass-border);
         border-radius: 14px;
         color: white; font-size: 1.1rem; letter-spacing: 8px;
-        text-align: center;
-        transition: all 0.3s;
+        text-align: center; transition: all 0.3s;
     }
     .input-group input:focus { 
-        outline: none; 
-        border-color: var(--accent-gold); 
-        box-shadow: 0 0 0 4px var(--accent-gold-glow);
-        letter-spacing: 12px;
+        outline: none; border-color: var(--accent-gold); 
+        box-shadow: 0 0 0 4px var(--accent-gold-glow); letter-spacing: 12px;
     }
-    .input-group i { 
-        position: absolute; left: 1.2rem; top: 50%; 
-        transform: translateY(-50%); 
-        color: var(--accent-gold); 
-    }
+    .input-group i { position: absolute; left: 1.2rem; top: 50%; transform: translateY(-50%); color: var(--accent-gold); }
 
     .btn-primary {
         width: 100%; padding: 1.1rem;
@@ -192,19 +165,17 @@
     .back-btn {
         background: none; border: none; color: var(--text-secondary);
         margin-top: 1.2rem; cursor: pointer; font-size: 0.9rem;
-        transition: color 0.2s;
     }
     .back-btn:hover { color: white; }
 
     .error-msg { 
-        color: var(--danger); font-size: 0.85rem; 
-        margin-bottom: 1rem; display: none;
+        color: var(--danger); font-size: 0.85rem; margin-bottom: 1rem; display: none;
         background: rgba(239, 68, 68, 0.1);
         padding: 0.6rem; border-radius: 8px;
         border: 1px solid rgba(239, 68, 68, 0.2);
     }
 
-    /* ============ TU APP ORIGINAL ============ */
+    /* ============ APP ============ */
     .app-container { display: none; max-width: 800px; margin: 0 auto; padding: 1.5rem 1rem; }
 
     .app-header {
@@ -216,8 +187,7 @@
     .app-header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; }
     .app-header h1 span { 
         background: linear-gradient(135deg, var(--accent-gold), #FBBF24);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .app-subtitle { color: var(--text-secondary); font-size: 0.85rem; margin-top: 2px; }
 
@@ -229,31 +199,22 @@
         font-size: 0.85rem; font-weight: 600;
     }
     .user-badge.master { 
-        background: rgba(245, 158, 11, 0.15); 
-        color: var(--accent-gold);
+        background: rgba(245, 158, 11, 0.15); color: var(--accent-gold);
         border: 1px solid rgba(245, 158, 11, 0.3);
     }
     .user-badge.client { 
-        background: rgba(59, 130, 246, 0.15); 
-        color: var(--accent-blue);
+        background: rgba(59, 130, 246, 0.15); color: var(--accent-blue);
         border: 1px solid rgba(59, 130, 246, 0.3);
     }
     
     .logout-btn {
         background: rgba(255, 255, 255, 0.05); 
         border: 1px solid var(--glass-border);
-        color: var(--text-secondary); 
-        padding: 0.5rem 1rem; 
-        border-radius: 10px;
-        cursor: pointer; 
-        transition: all 0.2s;
+        color: var(--text-secondary); padding: 0.5rem 1rem; 
+        border-radius: 10px; cursor: pointer; transition: all 0.2s;
         font-size: 0.85rem;
     }
-    .logout-btn:hover { 
-        background: rgba(239, 68, 68, 0.1); 
-        color: var(--danger); 
-        border-color: var(--danger);
-    }
+    .logout-btn:hover { background: rgba(239, 68, 68, 0.1); color: var(--danger); border-color: var(--danger); }
 
     .card {
         background: var(--glass-bg);
@@ -266,69 +227,153 @@
 
     .card-header { 
         display: flex; justify-content: space-between; align-items: center; 
-        margin-bottom: 1rem;
-        flex-wrap: wrap; gap: 0.5rem;
+        margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;
     }
     .card-title { 
         font-size: 1rem; font-weight: 600; 
         display: flex; align-items: center; gap: 0.6rem;
     }
+    .card-title i { color: var(--accent-gold); }
     
     .pozo-amount { 
-        font-size: 2rem; 
-        font-weight: 800; 
+        font-size: 2rem; font-weight: 800; 
         background: linear-gradient(135deg, var(--accent-gold), #FBBF24);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
 
     .pozo-stats { 
-        display: flex; gap: 1.5rem; 
-        color: var(--text-secondary); 
-        font-size: 0.9rem;
-        margin-top: 0.5rem;
+        display: flex; gap: 1.5rem; color: var(--text-secondary); 
+        font-size: 0.9rem; margin-top: 0.5rem;
     }
 
     .btn-add {
         background: rgba(255, 255, 255, 0.05); 
         border: 1px dashed var(--glass-border);
-        color: var(--text-secondary); 
-        padding: 0.5rem 1rem; 
-        border-radius: 10px;
-        cursor: pointer; 
-        font-size: 0.85rem; 
+        color: var(--text-secondary); padding: 0.5rem 1rem; 
+        border-radius: 10px; cursor: pointer; font-size: 0.85rem; 
         transition: all 0.2s;
     }
     .btn-add:hover { 
-        background: rgba(245, 158, 11, 0.1); 
-        color: var(--accent-gold); 
+        background: rgba(245, 158, 11, 0.1); color: var(--accent-gold); 
         border-color: var(--accent-gold);
     }
 
     .empty-state {
-        color: var(--text-secondary); 
-        text-align: center; 
-        padding: 1.5rem 1rem;
-        font-size: 0.9rem;
+        color: var(--text-secondary); text-align: center; 
+        padding: 1.5rem 1rem; font-size: 0.9rem;
     }
 
-    /* Day navigation */
-    .day-nav {
+    /* Staff list */
+    .staff-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .staff-item {
         display: flex; align-items: center; justify-content: space-between;
-        margin-bottom: 1rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--glass-border);
+        padding: 0.7rem 1rem; border-radius: 12px;
     }
-    .day-nav-btn {
-        background: rgba(255, 255, 255, 0.05);
+    .staff-item .name { font-weight: 500; }
+    .staff-item .earned { color: var(--success); font-weight: 600; font-size: 0.9rem; }
+    .staff-item .delete-btn {
+        background: none; border: none; color: var(--text-secondary);
+        cursor: pointer; padding: 0.3rem; border-radius: 6px;
+        transition: all 0.2s;
+    }
+    .staff-item .delete-btn:hover { color: var(--danger); background: rgba(239, 68, 68, 0.1); }
+
+    /* Day tabs */
+    .day-tabs {
+        display: flex; gap: 0.4rem; overflow-x: auto;
+        padding-bottom: 0.5rem; margin-bottom: 1rem;
+        scrollbar-width: thin;
+    }
+    .day-tab {
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.03);
         border: 1px solid var(--glass-border);
         color: var(--text-secondary);
-        width: 36px; height: 36px;
+        padding: 0.6rem 1rem;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: all 0.2s;
+        text-align: center;
+        min-width: 80px;
+    }
+    .day-tab:hover { background: rgba(255, 255, 255, 0.08); color: white; }
+    .day-tab.active {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.05));
+        border-color: var(--accent-gold);
+        color: var(--accent-gold);
+    }
+    .day-tab .day-name { display: block; font-weight: 600; font-size: 0.85rem; }
+    .day-tab .day-date { display: block; font-size: 0.7rem; opacity: 0.7; margin-top: 2px; }
+    .day-tab .day-amount { display: block; font-size: 0.75rem; margin-top: 4px; color: var(--success); }
+
+    .add-day-btn {
+        flex-shrink: 0;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px dashed var(--success);
+        color: var(--success);
+        padding: 0.6rem 1rem;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 600;
+        min-width: 80px;
+        transition: all 0.2s;
+    }
+    .add-day-btn:hover { background: rgba(16, 185, 129, 0.2); }
+
+    /* Day editor */
+    .day-editor {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--glass-border);
+        border-radius: 14px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    .day-editor-row {
+        display: flex; gap: 0.8rem; align-items: center;
+        flex-wrap: wrap;
+    }
+    .day-editor-row label {
+        font-size: 0.8rem; color: var(--text-secondary);
+        display: flex; flex-direction: column; gap: 0.3rem;
+        flex: 1; min-width: 120px;
+    }
+    .day-editor-row input {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--glass-border);
         border-radius: 10px;
+        padding: 0.6rem 0.8rem;
+        color: white; font-size: 0.9rem;
+        transition: all 0.2s;
+    }
+    .day-editor-row input:focus {
+        outline: none; border-color: var(--accent-gold);
+        box-shadow: 0 0 0 3px var(--accent-gold-glow);
+    }
+    .day-editor-actions {
+        display: flex; gap: 0.5rem; margin-top: 0.8rem;
+    }
+    .btn-small {
+        padding: 0.5rem 0.9rem;
+        border-radius: 8px;
+        border: none;
+        font-size: 0.8rem;
+        font-weight: 500;
         cursor: pointer;
         transition: all 0.2s;
     }
-    .day-nav-btn:hover { background: rgba(255, 255, 255, 0.1); color: white; }
-    .day-label { font-weight: 600; font-size: 0.95rem; }
+    .btn-danger {
+        background: rgba(239, 68, 68, 0.1);
+        color: var(--danger);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .btn-danger:hover { background: rgba(239, 68, 68, 0.2); }
 
+    /* Attendance */
     .attendance-grid { 
         display: grid; 
         grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); 
@@ -350,8 +395,34 @@
     .att-cell.tarde { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(245, 158, 11, 0.08); }
     .att-cell.permiso { border-color: var(--text-secondary); color: var(--text-secondary); background: rgba(107, 114, 128, 0.08); }
     .att-cell .att-emoji { font-size: 1.3rem; display: block; margin-bottom: 0.3rem; }
+    .att-cell small { display: block; font-size: 0.7rem; opacity: 0.8; margin-top: 2px; }
 
     .hint { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.8rem; text-align: center; }
+
+    /* Summary */
+    .summary-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr);
+        gap: 0.8rem; text-align: center; margin-bottom: 1rem;
+    }
+    .summary-box {
+        padding: 0.8rem; border-radius: 12px;
+    }
+    .summary-box .value { font-size: 1.5rem; font-weight: 700; }
+    .summary-box .label { font-size: 0.75rem; color: var(--text-secondary); }
+
+    .per-person-list {
+        display: flex; flex-direction: column; gap: 0.5rem;
+        margin-top: 1rem;
+    }
+    .per-person-item {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 0.7rem 1rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--glass-border);
+        border-radius: 10px;
+    }
+    .per-person-item .name { font-weight: 500; }
+    .per-person-item .amount { color: var(--success); font-weight: 700; }
 
     .btn-save {
         width: 100%; padding: 1.1rem; margin-top: 0.5rem;
@@ -370,27 +441,20 @@
         font-size: 0.85rem; margin-bottom: 1rem;
     }
 
-    /* ============ MODO SOLO LECTURA (CLIENTE) ============ */
+    /* ============ READ ONLY ============ */
     body.read-only .editable-action {
-        pointer-events: none;
-        opacity: 0.35;
-        cursor: not-allowed;
+        pointer-events: none; opacity: 0.35; cursor: not-allowed;
     }
-    body.read-only .att-cell {
-        pointer-events: none;
-        cursor: default;
-    }
+    body.read-only .att-cell { pointer-events: none; cursor: default; }
     body.read-only .att-cell:hover { transform: none; }
     body.read-only .btn-save {
         background: rgba(255, 255, 255, 0.05);
         color: var(--text-secondary);
-        box-shadow: none;
-        pointer-events: none;
+        box-shadow: none; pointer-events: none;
     }
     body.read-only .hint::after {
         content: ' (Modo solo lectura)';
-        color: var(--accent-blue);
-        font-weight: 600;
+        color: var(--accent-blue); font-weight: 600;
     }
 
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -405,6 +469,7 @@
         .modal-title { font-size: 1.4rem; }
         .pozo-amount { font-size: 1.7rem; }
         .attendance-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+        .summary-grid { grid-template-columns: 1fr; }
     }
 </style>
 </head>
@@ -448,11 +513,11 @@
     </div>
 </div>
 
-<!-- ============ TU APP ORIGINAL ============ -->
+<!-- ============ APP ============ -->
 <div id="appContainer" class="app-container">
     <header class="app-header">
         <div>
-            <h1>Propinas <span>P</span></h1>
+            <h1>Propinas <span>Pro</span></h1>
             <div class="app-subtitle">Martes a domingo · cierre cada 15 días</div>
         </div>
         <div class="header-right">
@@ -465,12 +530,13 @@
         <!-- Pozo -->
         <div class="card">
             <div class="card-header">
-                <div class="card-title"><i class="fas fa-wine-bottle"></i> Pozo</div>
-                <div class="pozo-amount">S/ 0.00</div>
+                <div class="card-title"><i class="fas fa-wine-bottle"></i> Pozo acumulado</div>
+                <div class="pozo-amount" id="pozoAmount">S/ 0.00</div>
             </div>
             <div class="pozo-stats">
                 <span><i class="far fa-calendar"></i> <span id="statDays">0</span> días</span>
                 <span><i class="fas fa-users"></i> <span id="statStaff">0</span> personal</span>
+                <span><i class="fas fa-coins"></i> Total repartido: <span id="statDistributed">S/ 0.00</span></span>
             </div>
         </div>
 
@@ -480,21 +546,47 @@
                 <div class="card-title"><i class="fas fa-user-tie"></i> Personal</div>
                 <button class="btn-add editable-action" onclick="addStaff()"><i class="fas fa-plus"></i> Agregar</button>
             </div>
-            <div id="staffList" class="empty-state">Aún no hay personal registrado.</div>
+            <div id="staffList" class="staff-list"></div>
+            <div id="staffEmpty" class="empty-state">Aún no hay personal registrado.</div>
+        </div>
+
+        <!-- Días -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><i class="fas fa-calendar-alt"></i> Días de la quincena</div>
+            </div>
+            <div class="day-tabs" id="dayTabs"></div>
+            
+            <div id="dayEditor" class="day-editor" style="display:none;">
+                <div class="day-editor-row">
+                    <label>
+                        Fecha
+                        <input type="date" id="dayDate" class="editable-action">
+                    </label>
+                    <label>
+                        Día
+                        <input type="text" id="dayName" class="editable-action" readonly style="opacity:0.7;">
+                    </label>
+                    <label>
+                        Monto del día (S/)
+                        <input type="number" id="dayAmount" class="editable-action" min="0" step="0.01" placeholder="0.00">
+                    </label>
+                </div>
+                <div class="day-editor-actions">
+                    <button class="btn-small btn-danger editable-action" onclick="deleteDay()"><i class="fas fa-trash"></i> Eliminar día</button>
+                </div>
+            </div>
+
+            <div id="noDaysMsg" class="empty-state">Agrega el primer día (martes a domingo) para comenzar.</div>
         </div>
 
         <!-- Asistencia -->
-        <div class="card">
+        <div class="card" id="attendanceCard" style="display:none;">
             <div class="card-header">
-                <div class="card-title"><i class="fas fa-calendar-check"></i> Asistencia y propinas</div>
-            </div>
-            <div class="day-nav">
-                <button class="day-nav-btn editable-action"><i class="fas fa-chevron-left"></i></button>
-                <div class="day-label" id="dayLabel">Hoy</div>
-                <button class="day-nav-btn editable-action"><i class="fas fa-chevron-right"></i></button>
+                <div class="card-title"><i class="fas fa-calendar-check"></i> Asistencia del día</div>
             </div>
             <div id="attendanceGrid" class="attendance-grid"></div>
-            <p class="hint">Toca una celda para cambiar. Tarde y permiso no reciben ese día.</p>
+            <p class="hint">Toca una celda para cambiar. Tarde y permiso no reciben ese día → va al pozo.</p>
         </div>
 
         <!-- Resumen -->
@@ -502,7 +594,7 @@
             <div class="card-header">
                 <div class="card-title"><i class="fas fa-chart-pie"></i> Resumen del reparto</div>
             </div>
-            <div id="summaryArea" class="empty-state">Aún no hay personal registrado.</div>
+            <div id="summaryArea" class="empty-state">Agrega personal y días para ver el reparto.</div>
             <div class="status-saved"><i class="fas fa-check-circle"></i> Todo guardado ✓</div>
             <button class="btn-save editable-action" onclick="saveData()"><i class="fas fa-save"></i> Guardar ahora</button>
         </div>
@@ -510,10 +602,13 @@
 </div>
 
 <script>
-    const MASTER_PIN = "1234"; // ← Cambia tu PIN aquí
+    const MASTER_PIN = "1234";
+    const VALID_DAYS = ['Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+    
     let currentRole = null;
     let staff = [];
-    let attendance = {};
+    let days = []; // { date, dayName, amount, attendance: {name: status} }
+    let currentDayIndex = -1;
 
     // --- LOGIN ---
     function showPinInput() {
@@ -529,9 +624,7 @@
         document.getElementById('errorMsg').style.display = 'none';
     }
 
-    function handleEnter(event) {
-        if (event.key === 'Enter') verifyPin();
-    }
+    function handleEnter(event) { if (event.key === 'Enter') verifyPin(); }
 
     function verifyPin() {
         const pin = document.getElementById('masterPin').value;
@@ -548,10 +641,7 @@
         }
     }
 
-    function loginAsClient() {
-        currentRole = 'client';
-        enterApp();
-    }
+    function loginAsClient() { currentRole = 'client'; enterApp(); }
 
     function enterApp() {
         document.getElementById('loginOverlay').style.display = 'none';
@@ -567,8 +657,7 @@
             badge.innerHTML = '<i class="fas fa-eye"></i> Usuario';
             document.body.classList.add('read-only');
         }
-        renderAttendance();
-        renderSummary();
+        renderAll();
     }
 
     function logout() {
@@ -578,79 +667,322 @@
         backToRoles();
     }
 
-    // --- APP ---
+    // --- STAFF ---
     function addStaff() {
         const name = prompt('Nombre del personal:');
         if (!name || !name.trim()) return;
         const cleanName = name.trim();
         if (staff.includes(cleanName)) { alert('Ya está registrado.'); return; }
         staff.push(cleanName);
-        attendance[cleanName] = 'presente';
-        updateStats();
+        // Agregar a todos los días existentes
+        days.forEach(d => d.attendance[cleanName] = 'presente');
+        renderAll();
+    }
+
+    function removeStaff(name) {
+        if (!confirm(`¿Eliminar a ${name}?`)) return;
+        staff = staff.filter(s => s !== name);
+        days.forEach(d => delete d.attendance[name]);
+        renderAll();
+    }
+
+    // --- DAYS ---
+    function addDay() {
+        // Sugerir siguiente fecha (martes-domingo)
+        let suggestedDate = '';
+        if (days.length > 0) {
+            const last = new Date(days[days.length - 1].date + 'T00:00:00');
+            const next = new Date(last);
+            next.setDate(last.getDate() + 1);
+            // Saltar lunes si cae en lunes
+            while (next.getDay() === 1) next.setDate(next.getDate() + 1);
+            suggestedDate = next.toISOString().split('T')[0];
+        } else {
+            // Buscar próximo martes
+            const today = new Date();
+            const dayOfWeek = today.getDay();
+            let daysUntilTuesday = (2 - dayOfWeek + 7) % 7;
+            if (daysUntilTuesday === 0 && today.getHours() >= 20) daysUntilTuesday = 7;
+            const nextTue = new Date(today);
+            nextTue.setDate(today.getDate() + daysUntilTuesday);
+            suggestedDate = nextTue.toISOString().split('T')[0];
+        }
+
+        const dateStr = prompt('Fecha del día (AAAA-MM-DD):', suggestedDate);
+        if (!dateStr) return;
+        
+        const dateObj = new Date(dateStr + 'T00:00:00');
+        if (isNaN(dateObj)) { alert('Fecha inválida'); return; }
+        
+        const dayOfWeek = dateObj.getDay();
+        // 0=Dom, 1=Lun, 2=Mar, 3=Mie, 4=Jue, 5=Vie, 6=Sab
+        if (dayOfWeek === 1) { 
+            alert('Solo se permiten días de martes a domingo.'); 
+            return; 
+        }
+        
+        const dayName = VALID_DAYS[dayOfWeek === 0 ? 5 : dayOfWeek - 2];
+        
+        // Verificar duplicado
+        if (days.some(d => d.date === dateStr)) {
+            alert('Ya existe un día con esa fecha.');
+            return;
+        }
+
+        const amountStr = prompt('Monto de propinas del día (S/):', '0');
+        if (amountStr === null) return;
+        const amount = parseFloat(amountStr) || 0;
+
+        const attendance = {};
+        staff.forEach(s => attendance[s] = 'presente');
+
+        days.push({ date: dateStr, dayName, amount, attendance });
+        // Ordenar por fecha
+        days.sort((a, b) => a.date.localeCompare(b.date));
+        
+        currentDayIndex = days.findIndex(d => d.date === dateStr);
+        renderAll();
+    }
+
+    function selectDay(index) {
+        currentDayIndex = index;
+        renderAll();
+    }
+
+    function deleteDay() {
+        if (currentDayIndex < 0) return;
+        if (!confirm('¿Eliminar este día?')) return;
+        days.splice(currentDayIndex, 1);
+        currentDayIndex = days.length > 0 ? 0 : -1;
+        renderAll();
+    }
+
+    function updateDayField(field, value) {
+        if (currentDayIndex < 0) return;
+        const day = days[currentDayIndex];
+        
+        if (field === 'date') {
+            const dateObj = new Date(value + 'T00:00:00');
+            if (isNaN(dateObj)) return;
+            const dayOfWeek = dateObj.getDay();
+            if (dayOfWeek === 1) { alert('Solo martes a domingo'); return; }
+            day.date = value;
+            day.dayName = VALID_DAYS[dayOfWeek === 0 ? 5 : dayOfWeek - 2];
+        } else if (field === 'amount') {
+            day.amount = parseFloat(value) || 0;
+        }
+        renderAll();
+    }
+
+    // --- ATTENDANCE ---
+    function cycleAttendance(name) {
+        if (currentDayIndex < 0) return;
+        const day = days[currentDayIndex];
+        const current = day.attendance[name] || 'presente';
+        if (current === 'presente') day.attendance[name] = 'tarde';
+        else if (current === 'tarde') day.attendance[name] = 'permiso';
+        else day.attendance[name] = 'presente';
+        renderAll();
+    }
+
+    // --- CÁLCULOS ---
+    function calcDayDistribution(day) {
+        const presentes = staff.filter(s => day.attendance[s] === 'presente');
+        const count = presentes.length;
+        const perPerson = count > 0 ? day.amount / count : 0;
+        const toPozo = day.amount - (perPerson * count); // Redondeo
+        return { perPerson, toPozo, presentes: count };
+    }
+
+    function calcPersonTotal(name) {
+        let total = 0;
+        days.forEach(day => {
+            if (day.attendance[name] === 'presente') {
+                const dist = calcDayDistribution(day);
+                total += dist.perPerson;
+            }
+        });
+        return total;
+    }
+
+    function calcPozo() {
+        // Pozo = suma de lo que NO se reparte (tardes/permisos)
+        let total = 0;
+        days.forEach(day => {
+            const dist = calcDayDistribution(day);
+            total += dist.toPozo;
+        });
+        return total;
+    }
+
+    function calcTotalDistributed() {
+        return staff.reduce((sum, name) => sum + calcPersonTotal(name), 0);
+    }
+
+    // --- RENDER ---
+    function renderAll() {
+        renderPozo();
+        renderStaff();
+        renderDays();
+        renderDayEditor();
         renderAttendance();
         renderSummary();
     }
 
-    function updateStats() {
+    function renderPozo() {
+        const pozo = calcPozo();
+        document.getElementById('pozoAmount').textContent = `S/ ${pozo.toFixed(2)}`;
+        document.getElementById('statDays').textContent = days.length;
         document.getElementById('statStaff').textContent = staff.length;
-        document.getElementById('statDays').textContent = staff.length > 0 ? 1 : 0;
+        document.getElementById('statDistributed').textContent = `S/ ${calcTotalDistributed().toFixed(2)}`;
+    }
+
+    function renderStaff() {
+        const list = document.getElementById('staffList');
+        const empty = document.getElementById('staffEmpty');
+        
+        if (staff.length === 0) {
+            list.innerHTML = '';
+            empty.style.display = 'block';
+            return;
+        }
+        empty.style.display = 'none';
+        
+        list.innerHTML = staff.map(name => {
+            const earned = calcPersonTotal(name);
+            return `
+                <div class="staff-item">
+                    <span class="name"><i class="fas fa-user" style="color:var(--accent-gold);margin-right:0.5rem;"></i>${name}</span>
+                    <div style="display:flex;align-items:center;gap:0.8rem;">
+                        <span class="earned">S/ ${earned.toFixed(2)}</span>
+                        <button class="delete-btn editable-action" onclick="removeStaff('${name}')"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function renderDays() {
+        const tabs = document.getElementById('dayTabs');
+        const noMsg = document.getElementById('noDaysMsg');
+        
+        if (days.length === 0) {
+            tabs.innerHTML = `<button class="add-day-btn editable-action" onclick="addDay()"><i class="fas fa-plus"></i> Agregar día</button>`;
+            noMsg.style.display = 'block';
+            return;
+        }
+        noMsg.style.display = 'none';
+        
+        tabs.innerHTML = days.map((d, i) => `
+            <div class="day-tab ${i === currentDayIndex ? 'active' : ''}" onclick="selectDay(${i})">
+                <span class="day-name">${d.dayName}</span>
+                <span class="day-date">${formatDate(d.date)}</span>
+                <span class="day-amount">S/ ${d.amount.toFixed(2)}</span>
+            </div>
+        `).join('') + `<button class="add-day-btn editable-action" onclick="addDay()"><i class="fas fa-plus"></i>+</button>`;
+    }
+
+    function renderDayEditor() {
+        const editor = document.getElementById('dayEditor');
+        if (currentDayIndex < 0 || days.length === 0) {
+            editor.style.display = 'none';
+            return;
+        }
+        editor.style.display = 'block';
+        const day = days[currentDayIndex];
+        document.getElementById('dayDate').value = day.date;
+        document.getElementById('dayName').value = day.dayName;
+        document.getElementById('dayAmount').value = day.amount;
     }
 
     function renderAttendance() {
+        const card = document.getElementById('attendanceCard');
         const grid = document.getElementById('attendanceGrid');
-        if (staff.length === 0) {
-            grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;">Agrega personal para registrar asistencia.</div>';
+        
+        if (currentDayIndex < 0 || staff.length === 0) {
+            card.style.display = 'none';
             return;
         }
-        grid.innerHTML = '';
-        staff.forEach(name => {
-            const status = attendance[name] || 'presente';
-            const cell = document.createElement('div');
-            cell.className = `att-cell ${status} editable-action`;
+        card.style.display = 'block';
+        const day = days[currentDayIndex];
+        
+        grid.innerHTML = staff.map(name => {
+            const status = day.attendance[name] || 'presente';
             let emoji = '✔', label = 'Presente';
             if (status === 'tarde') { emoji = '⏰'; label = 'Tarde'; }
             if (status === 'permiso') { emoji = '📝'; label = 'Permiso'; }
-            cell.innerHTML = `<span class="att-emoji">${emoji}</span>${name}<br><small>${label}</small>`;
-            cell.addEventListener('click', () => cycleAttendance(name));
-            grid.appendChild(cell);
-        });
-    }
-
-    function cycleAttendance(name) {
-        if (document.body.classList.contains('read-only')) return;
-        const current = attendance[name];
-        if (current === 'presente') attendance[name] = 'tarde';
-        else if (current === 'tarde') attendance[name] = 'permiso';
-        else attendance[name] = 'presente';
-        renderAttendance();
-        renderSummary();
+            return `
+                <div class="att-cell ${status} editable-action" onclick="cycleAttendance('${name}')">
+                    <span class="att-emoji">${emoji}</span>
+                    ${name}
+                    <small>${label}</small>
+                </div>
+            `;
+        }).join('');
     }
 
     function renderSummary() {
         const area = document.getElementById('summaryArea');
-        if (staff.length === 0) {
-            area.innerHTML = 'Aún no hay personal registrado.';
+        
+        if (staff.length === 0 || days.length === 0) {
+            area.innerHTML = 'Agrega personal y días para ver el reparto.';
+            area.className = 'empty-state';
             return;
         }
-        const presentes = staff.filter(n => attendance[n] === 'presente').length;
-        const tardes = staff.filter(n => attendance[n] === 'tarde').length;
-        const permisos = staff.filter(n => attendance[n] === 'permiso').length;
-        area.innerHTML = `
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;text-align:center;">
-                <div style="padding:0.8rem;background:rgba(16,185,129,0.08);border-radius:12px;border:1px solid rgba(16,185,129,0.2);">
-                    <div style="font-size:1.5rem;font-weight:700;color:var(--success);">${presentes}</div>
-                    <div style="font-size:0.75rem;color:var(--text-secondary);">Presentes</div>
+
+        // Totales por estado en todos los días
+        let totalPresentes = 0, totalTardes = 0, totalPermisos = 0;
+        days.forEach(day => {
+            staff.forEach(name => {
+                const s = day.attendance[name];
+                if (s === 'presente') totalPresentes++;
+                else if (s === 'tarde') totalTardes++;
+                else if (s === 'permiso') totalPermisos++;
+            });
+        });
+
+        const pozo = calcPozo();
+        const distributed = calcTotalDistributed();
+
+        let html = `
+            <div class="summary-grid">
+                <div class="summary-box" style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);">
+                    <div class="value" style="color:var(--success);">${totalPresentes}</div>
+                    <div class="label">Asistencias</div>
                 </div>
-                <div style="padding:0.8rem;background:rgba(245,158,11,0.08);border-radius:12px;border:1px solid rgba(245,158,11,0.2);">
-                    <div style="font-size:1.5rem;font-weight:700;color:var(--accent-gold);">${tardes}</div>
-                    <div style="font-size:0.75rem;color:var(--text-secondary);">Tardes</div>
+                <div class="summary-box" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);">
+                    <div class="value" style="color:var(--accent-gold);">${totalTardes + totalPermisos}</div>
+                    <div class="label">No reciben</div>
                 </div>
-                <div style="padding:0.8rem;background:rgba(107,114,128,0.08);border-radius:12px;border:1px solid rgba(107,114,128,0.2);">
-                    <div style="font-size:1.5rem;font-weight:700;color:var(--text-secondary);">${permisos}</div>
-                    <div style="font-size:0.75rem;color:var(--text-secondary);">Permisos</div>
+                <div class="summary-box" style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);">
+                    <div class="value" style="color:var(--accent-blue);">S/ ${pozo.toFixed(2)}</div>
+                    <div class="label">Al pozo</div>
                 </div>
             </div>
+            <div style="color:var(--text-secondary);font-size:0.85rem;margin-bottom:0.5rem;text-align:center;">
+                Total repartido: <strong style="color:var(--success);">S/ ${distributed.toFixed(2)}</strong>
+            </div>
+            <div class="per-person-list">
         `;
+        
+        staff.forEach(name => {
+            const earned = calcPersonTotal(name);
+            html += `
+                <div class="per-person-item">
+                    <span class="name"><i class="fas fa-user" style="color:var(--accent-gold);margin-right:0.5rem;"></i>${name}</span>
+                    <span class="amount">S/ ${earned.toFixed(2)}</span>
+                </div>
+            `;
+        });
+        
+        html += '</div>';
+        area.innerHTML = html;
+        area.className = '';
+    }
+
+    function formatDate(dateStr) {
+        const d = new Date(dateStr + 'T00:00:00');
+        return d.toLocaleDateString('es-PE', { day: '2-digit', month: 'short' });
     }
 
     function saveData() {
@@ -661,6 +993,10 @@
         btn.style.background = 'linear-gradient(135deg, #10B981, #059669)';
         setTimeout(() => { btn.innerHTML = original; btn.style.background = ''; }, 1500);
     }
+
+    // Listeners para el editor de día
+    document.getElementById('dayDate').addEventListener('change', e => updateDayField('date', e.target.value));
+    document.getElementById('dayAmount').addEventListener('input', e => updateDayField('amount', e.target.value));
 </script>
 
 </body>
