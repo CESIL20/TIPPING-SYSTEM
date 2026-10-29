@@ -549,6 +549,264 @@
     }
 
     function loginAsClient() {
+        current-glass-border);
+        color: var(--text-secondary); 
+        padding: 0.5rem 1rem; 
+        border-radius: 10px;
+        cursor: pointer; 
+        font-size: 0.85rem; 
+        transition: all 0.2s;
+    }
+    .btn-add:hover { 
+        background: rgba(245, 158, 11, 0.1); 
+        color: var(--accent-gold); 
+        border-color: var(--accent-gold);
+    }
+
+    .empty-state {
+        color: var(--text-secondary); 
+        text-align: center; 
+        padding: 1.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Day navigation */
+    .day-nav {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+    .day-nav-btn {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--glass-border);
+        color: var(--text-secondary);
+        width: 36px; height: 36px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .day-nav-btn:hover { background: rgba(255, 255, 255, 0.1); color: white; }
+    .day-label { font-weight: 600; font-size: 0.95rem; }
+
+    .attendance-grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); 
+        gap: 0.6rem; 
+    }
+    .att-cell {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px; 
+        padding: 1rem 0.5rem; 
+        text-align: center;
+        cursor: pointer; 
+        transition: all 0.2s;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+    .att-cell:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-2px); }
+    .att-cell.presente { border-color: var(--success); color: var(--success); background: rgba(16, 185, 129, 0.08); }
+    .att-cell.tarde { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(245, 158, 11, 0.08); }
+    .att-cell.permiso { border-color: var(--text-secondary); color: var(--text-secondary); background: rgba(107, 114, 128, 0.08); }
+    .att-cell .att-emoji { font-size: 1.3rem; display: block; margin-bottom: 0.3rem; }
+
+    .hint { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.8rem; text-align: center; }
+
+    .btn-save {
+        width: 100%; padding: 1.1rem; margin-top: 0.5rem;
+        background: linear-gradient(135deg, #3B82F6, #2563EB);
+        border: none; border-radius: 14px; 
+        color: white; font-weight: 600;
+        cursor: pointer; 
+        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
+        transition: all 0.3s;
+    }
+    .btn-save:hover { transform: translateY(-2px); }
+
+    .status-saved {
+        display: flex; align-items: center; justify-content: center;
+        gap: 0.5rem; color: var(--success);
+        font-size: 0.85rem; margin-bottom: 1rem;
+    }
+
+    /* ============ MODO SOLO LECTURA (CLIENTE) ============ */
+    body.read-only .editable-action {
+        pointer-events: none;
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
+    body.read-only .att-cell {
+        pointer-events: none;
+        cursor: default;
+    }
+    body.read-only .att-cell:hover { transform: none; }
+    body.read-only .btn-save {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text-secondary);
+        box-shadow: none;
+        pointer-events: none;
+    }
+    body.read-only .hint::after {
+        content: ' (Modo solo lectura)';
+        color: var(--accent-blue);
+        font-weight: 600;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { 
+        from { opacity: 0; transform: translateY(40px) scale(0.95); } 
+        to { opacity: 1; transform: translateY(0) scale(1); } 
+    }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+
+    @media (max-width: 600px) {
+        .login-modal { padding: 2rem 1.5rem; }
+        .modal-title { font-size: 1.4rem; }
+        .pozo-amount { font-size: 1.7rem; }
+        .attendance-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+    }
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN PREMIUM ============ -->
+<div id="loginOverlay" class="login-overlay">
+    <div class="login-modal">
+        <div class="modal-logo"><i class="fas fa-coins"></i></div>
+        <h2 class="modal-title">Propinas Pro</h2>
+        <p class="modal-subtitle">Propinas por quincena · Martes a domingo</p>
+
+        <div id="roleSelector" class="role-selector">
+            <div class="role-btn master" onclick="showPinInput()">
+                <div class="role-icon"><i class="fas fa-crown"></i></div>
+                <div class="role-info">
+                    <h3>Entrar como máster</h3>
+                    <p>Administración total y edición</p>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </div>
+            <div class="role-btn client" onclick="loginAsClient()">
+                <div class="role-icon"><i class="fas fa-eye"></i></div>
+                <div class="role-info">
+                    <h3>Entrar como usuario</h3>
+                    <p>Visualización en solo lectura</p>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </div>
+        </div>
+
+        <div id="pinArea" class="pin-area">
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="masterPin" placeholder="••••" maxlength="4" onkeypress="handleEnter(event)">
+            </div>
+            <p id="errorMsg" class="error-msg"><i class="fas fa-exclamation-circle"></i> PIN incorrecto</p>
+            <button class="btn-primary" onclick="verifyPin()">Desbloquear</button>
+            <button class="back-btn" onclick="backToRoles()"><i class="fas fa-arrow-left"></i> Volver</button>
+        </div>
+    </div>
+</div>
+
+<!-- ============ TU APP ORIGINAL ============ -->
+<div id="appContainer" class="app-container">
+    <header class="app-header">
+        <div>
+            <h1>Propinas <span>P</span></h1>
+            <div class="app-subtitle">Martes a domingo · cierre cada 15 días</div>
+        </div>
+        <div class="header-right">
+            <div id="userBadge" class="user-badge"></div>
+            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Salir</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Pozo -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><i class="fas fa-wine-bottle"></i> Pozo</div>
+                <div class="pozo-amount">S/ 0.00</div>
+            </div>
+            <div class="pozo-stats">
+                <span><i class="far fa-calendar"></i> <span id="statDays">0</span> días</span>
+                <span><i class="fas fa-users"></i> <span id="statStaff">0</span> personal</span>
+            </div>
+        </div>
+
+        <!-- Personal -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><i class="fas fa-user-tie"></i> Personal</div>
+                <button class="btn-add editable-action" onclick="addStaff()"><i class="fas fa-plus"></i> Agregar</button>
+            </div>
+            <div id="staffList" class="empty-state">Aún no hay personal registrado.</div>
+        </div>
+
+        <!-- Asistencia -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><i class="fas fa-calendar-check"></i> Asistencia y propinas</div>
+            </div>
+            <div class="day-nav">
+                <button class="day-nav-btn editable-action"><i class="fas fa-chevron-left"></i></button>
+                <div class="day-label" id="dayLabel">Hoy</div>
+                <button class="day-nav-btn editable-action"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div id="attendanceGrid" class="attendance-grid"></div>
+            <p class="hint">Toca una celda para cambiar. Tarde y permiso no reciben ese día.</p>
+        </div>
+
+        <!-- Resumen -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><i class="fas fa-chart-pie"></i> Resumen del reparto</div>
+            </div>
+            <div id="summaryArea" class="empty-state">Aún no hay personal registrado.</div>
+            <div class="status-saved"><i class="fas fa-check-circle"></i> Todo guardado ✓</div>
+            <button class="btn-save editable-action" onclick="saveData()"><i class="fas fa-save"></i> Guardar ahora</button>
+        </div>
+    </main>
+</div>
+
+<script>
+    const MASTER_PIN = "1234"; // ← Cambia tu PIN aquí
+    let currentRole = null;
+    let staff = [];
+    let attendance = {};
+
+    // --- LOGIN ---
+    function showPinInput() {
+        document.getElementById('roleSelector').classList.add('hidden');
+        document.getElementById('pinArea').classList.add('active');
+        setTimeout(() => document.getElementById('masterPin').focus(), 100);
+    }
+
+    function backToRoles() {
+        document.getElementById('roleSelector').classList.remove('hidden');
+        document.getElementById('pinArea').classList.remove('active');
+        document.getElementById('masterPin').value = '';
+        document.getElementById('errorMsg').style.display = 'none';
+    }
+
+    function handleEnter(event) {
+        if (event.key === 'Enter') verifyPin();
+    }
+
+    function verifyPin() {
+        const pin = document.getElementById('masterPin').value;
+        if (pin === MASTER_PIN) {
+            currentRole = 'master';
+            enterApp();
+        } else {
+            document.getElementById('errorMsg').style.display = 'block';
+            const input = document.getElementById('masterPin');
+            input.value = '';
+            input.style.animation = 'none';
+            setTimeout(() => input.style.animation = 'shake 0.4s', 10);
+            input.focus();
+        }
+    }
+
+    function loginAsClient() {
         currentll-color: transparent;
         letter-spacing: -1px;
     }
