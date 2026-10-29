@@ -549,716 +549,119 @@
     }
 
     function loginAsClient() {
-        current-glass-border);
-        color: var(--text-secondary); 
-        padding: 0.5rem 1rem; 
-        border-radius: 10px;
-        cursor: pointer; 
-        font-size: 0.85rem; 
-        transition: all 0.2s;
-    }
-    .btn-add:hover { 
-        background: rgba(245, 158, 11, 0.1); 
-        color: var(--accent-gold); 
-        border-color: var(--accent-gold);
-    }
-
-    .empty-state {
-        color: var(--text-secondary); 
-        text-align: center; 
-        padding: 1.5rem 1rem;
-        font-size: 0.9rem;
-    }
-
-    /* Day navigation */
-    .day-nav {
-        display: flex; align-items: center; justify-content: space-between;
-        margin-bottom: 1rem;
-    }
-    .day-nav-btn {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--glass-border);
-        color: var(--text-secondary);
-        width: 36px; height: 36px;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    .day-nav-btn:hover { background: rgba(255, 255, 255, 0.1); color: white; }
-    .day-label { font-weight: 600; font-size: 0.95rem; }
-
-    .attendance-grid { 
-        display: grid; 
-        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); 
-        gap: 0.6rem; 
-    }
-    .att-cell {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--glass-border);
-        border-radius: 12px; 
-        padding: 1rem 0.5rem; 
-        text-align: center;
-        cursor: pointer; 
-        transition: all 0.2s;
-        font-size: 0.85rem;
-        font-weight: 500;
-    }
-    .att-cell:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-2px); }
-    .att-cell.presente { border-color: var(--success); color: var(--success); background: rgba(16, 185, 129, 0.08); }
-    .att-cell.tarde { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(245, 158, 11, 0.08); }
-    .att-cell.permiso { border-color: var(--text-secondary); color: var(--text-secondary); background: rgba(107, 114, 128, 0.08); }
-    .att-cell .att-emoji { font-size: 1.3rem; display: block; margin-bottom: 0.3rem; }
-
-    .hint { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.8rem; text-align: center; }
-
-    .btn-save {
-        width: 100%; padding: 1.1rem; margin-top: 0.5rem;
-        background: linear-gradient(135deg, #3B82F6, #2563EB);
-        border: none; border-radius: 14px; 
-        color: white; font-weight: 600;
-        cursor: pointer; 
-        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
-        transition: all 0.3s;
-    }
-    .btn-save:hover { transform: translateY(-2px); }
-
-    .status-saved {
-        display: flex; align-items: center; justify-content: center;
-        gap: 0.5rem; color: var(--success);
-        font-size: 0.85rem; margin-bottom: 1rem;
-    }
-
-    /* ============ MODO SOLO LECTURA (CLIENTE) ============ */
-    body.read-only .editable-action {
-        pointer-events: none;
-        opacity: 0.35;
-        cursor: not-allowed;
-    }
-    body.read-only .att-cell {
-        pointer-events: none;
-        cursor: default;
-    }
-    body.read-only .att-cell:hover { transform: none; }
-    body.read-only .btn-save {
-        background: rgba(255, 255, 255, 0.05);
-        color: var(--text-secondary);
-        box-shadow: none;
-        pointer-events: none;
-    }
-    body.read-only .hint::after {
-        content: ' (Modo solo lectura)';
-        color: var(--accent-blue);
-        font-weight: 600;
-    }
-
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { 
-        from { opacity: 0; transform: translateY(40px) scale(0.95); } 
-        to { opacity: 1; transform: translateY(0) scale(1); } 
-    }
-    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
-
-    @media (max-width: 600px) {
-        .login-modal { padding: 2rem 1.5rem; }
-        .modal-title { font-size: 1.4rem; }
-        .pozo-amount { font-size: 1.7rem; }
-        .attendance-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
-    }
-</style>
-</head>
-<body>
-
-<!-- ============ LOGIN PREMIUM ============ -->
-<div id="loginOverlay" class="login-overlay">
-    <div class="login-modal">
-        <div class="modal-logo"><i class="fas fa-coins"></i></div>
-        <h2 class="modal-title">Propinas Pro</h2>
-        <p class="modal-subtitle">Propinas por quincena · Martes a domingo</p>
-
-        <div id="roleSelector" class="role-selector">
-            <div class="role-btn master" onclick="showPinInput()">
-                <div class="role-icon"><i class="fas fa-crown"></i></div>
-                <div class="role-info">
-                    <h3>Entrar como máster</h3>
-                    <p>Administración total y edición</p>
-                </div>
-                <i class="fas fa-chevron-right arrow"></i>
-            </div>
-            <div class="role-btn client" onclick="loginAsClient()">
-                <div class="role-icon"><i class="fas fa-eye"></i></div>
-                <div class="role-info">
-                    <h3>Entrar como usuario</h3>
-                    <p>Visualización en solo lectura</p>
-                </div>
-                <i class="fas fa-chevron-right arrow"></i>
-            </div>
-        </div>
-
-        <div id="pinArea" class="pin-area">
-            <div class="input-group">
-                <i class="fas fa-lock"></i>
-                <input type="password" id="masterPin" placeholder="••••" maxlength="4" onkeypress="handleEnter(event)">
-            </div>
-            <p id="errorMsg" class="error-msg"><i class="fas fa-exclamation-circle"></i> PIN incorrecto</p>
-            <button class="btn-primary" onclick="verifyPin()">Desbloquear</button>
-            <button class="back-btn" onclick="backToRoles()"><i class="fas fa-arrow-left"></i> Volver</button>
-        </div>
-    </div>
-</div>
-
-<!-- ============ TU APP ORIGINAL ============ -->
-<div id="appContainer" class="app-container">
-    <header class="app-header">
-        <div>
-            <h1>Propinas <span>P</span></h1>
-            <div class="app-subtitle">Martes a domingo · cierre cada 15 días</div>
-        </div>
-        <div class="header-right">
-            <div id="userBadge" class="user-badge"></div>
-            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Salir</button>
-        </div>
-    </header>
-
-    <main>
-        <!-- Pozo -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title"><i class="fas fa-wine-bottle"></i> Pozo</div>
-                <div class="pozo-amount">S/ 0.00</div>
-            </div>
-            <div class="pozo-stats">
-                <span><i class="far fa-calendar"></i> <span id="statDays">0</span> días</span>
-                <span><i class="fas fa-users"></i> <span id="statStaff">0</span> personal</span>
-            </div>
-        </div>
-
-        <!-- Personal -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title"><i class="fas fa-user-tie"></i> Personal</div>
-                <button class="btn-add editable-action" onclick="addStaff()"><i class="fas fa-plus"></i> Agregar</button>
-            </div>
-            <div id="staffList" class="empty-state">Aún no hay personal registrado.</div>
-        </div>
-
-        <!-- Asistencia -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title"><i class="fas fa-calendar-check"></i> Asistencia y propinas</div>
-            </div>
-            <div class="day-nav">
-                <button class="day-nav-btn editable-action"><i class="fas fa-chevron-left"></i></button>
-                <div class="day-label" id="dayLabel">Hoy</div>
-                <button class="day-nav-btn editable-action"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div id="attendanceGrid" class="attendance-grid"></div>
-            <p class="hint">Toca una celda para cambiar. Tarde y permiso no reciben ese día.</p>
-        </div>
-
-        <!-- Resumen -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title"><i class="fas fa-chart-pie"></i> Resumen del reparto</div>
-            </div>
-            <div id="summaryArea" class="empty-state">Aún no hay personal registrado.</div>
-            <div class="status-saved"><i class="fas fa-check-circle"></i> Todo guardado ✓</div>
-            <button class="btn-save editable-action" onclick="saveData()"><i class="fas fa-save"></i> Guardar ahora</button>
-        </div>
-    </main>
-</div>
-
-<script>
-    const MASTER_PIN = "1234"; // ← Cambia tu PIN aquí
-    let currentRole = null;
-    let staff = [];
-    let attendance = {};
-
-    // --- LOGIN ---
-    function showPinInput() {
-        document.getElementById('roleSelector').classList.add('hidden');
-        document.getElementById('pinArea').classList.add('active');
-        setTimeout(() => document.getElementById('masterPin').focus(), 100);
-    }
-
-    function backToRoles() {
-        document.getElementById('roleSelector').classList.remove('hidden');
-        document.getElementById('pinArea').classList.remove('active');
-        document.getElementById('masterPin').value = '';
-        document.getElementById('errorMsg').style.display = 'none';
-    }
-
-    function handleEnter(event) {
-        if (event.key === 'Enter') verifyPin();
-    }
-
-    function verifyPin() {
-        const pin = document.getElementById('masterPin').value;
-        if (pin === MASTER_PIN) {
-            currentRole = 'master';
-            enterApp();
-        } else {
-            document.getElementById('errorMsg').style.display = 'block';
-            const input = document.getElementById('masterPin');
-            input.value = '';
-            input.style.animation = 'none';
-            setTimeout(() => input.style.animation = 'shake 0.4s', 10);
-            input.focus();
-        }
-    }
-
-    function loginAsClient() {
-        currentll-color: transparent;
-        letter-spacing: -1px;
-    }
-
-    .pozo-stats { 
-        display: flex; gap: 1.5rem; 
-        color: var(--text-secondary); 
-        font-size: 0.9rem;
-        margin-top: 0.5rem;
-    }
-    .pozo-stats span { display: flex; align-items: center; gap: 0.4rem; }
-
-    .btn-add {
-        background: rgba(255, 255, 255, 0.05); 
-        border: 1px dashed var(--glass-border);
-        color: var(--text-secondary); 
-        padding: 0.5rem 1rem; 
-        border-radius: 10px;
-        cursor: pointer; 
-        font-size: 0.85rem; 
-        transition: all 0.2s;
-    }
-    .btn-add:hover { 
-        background: rgba(245, 158, 11, 0.1); 
-        color: var(--accent-gold); 
-        border-color: var(--accent-gold);
-    }
-
-    .empty-state {
-        color: var(--text-secondary); 
-        text-align: center; 
-        padding: 2rem 1rem;
-        font-size: 0.9rem;
-    }
-    .empty-state i { font-size: 2rem; margin-bottom: 0.5rem; opacity: 0.4; display: block; }
-
-    /* Attendance */
-    .attendance-grid { 
-        display: grid; 
-        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); 
-        gap: 0.6rem; 
-    }
-    .att-cell {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--glass-border);
-        border-radius: 12px; 
-        padding: 1rem 0.5rem; 
-        text-align: center;
-        cursor: pointer; 
-        transition: all 0.2s;
-        font-size: 0.85rem;
-        font-weight: 500;
-    }
-    .att-cell:hover { 
-        background: rgba(255, 255, 255, 0.08);
-        transform: translateY(-2px);
-    }
-    .att-cell.presente { 
-        border-color: var(--success); 
-        color: var(--success); 
-        background: rgba(16, 185, 129, 0.08); 
-    }
-    .att-cell.tarde { 
-        border-color: var(--accent-gold); 
-        color: var(--accent-gold); 
-        background: rgba(245, 158, 11, 0.08); 
-    }
-    .att-cell.permiso { 
-        border-color: var(--text-secondary); 
-        color: var(--text-secondary); 
-        background: rgba(107, 114, 128, 0.08); 
-    }
-    .att-cell .att-emoji { font-size: 1.3rem; display: block; margin-bottom: 0.3rem; }
-
-    .hint { 
-        font-size: 0.75rem; 
-        color: var(--text-secondary); 
-        margin-top: 0.8rem;
-        text-align: center;
-        opacity: 0.7;
-    }
-
-    .btn-save {
-        width: 100%; padding: 1.1rem; margin-top: 0.5rem;
-        background: linear-gradient(135deg, #3B82F6, #2563EB);
-        border: none; border-radius: 14px; 
-        color: white; font-weight: 600;
-        cursor: pointer; 
-        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
-        transition: all 0.3s;
-        font-size: 0.95rem;
-    }
-    .btn-save:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.5); }
-
-    .status-saved {
-        display: flex; align-items: center; justify-content: center;
-        gap: 0.5rem; color: var(--success);
-        font-size: 0.85rem; margin-bottom: 1rem;
-    }
-
-    /* ============ READ ONLY MODE ============ */
-    body.read-only .editable-action {
-        pointer-events: none;
-        opacity: 0.35;
-        cursor: not-allowed;
-    }
-    
-    body.read-only .att-cell {
-        pointer-events: none;
-        cursor: default;
-    }
-    body.read-only .att-cell:hover { transform: none; }
-
-    body.read-only .btn-save {
-        background: rgba(255, 255, 255, 0.05);
-        color: var(--text-secondary);
-        box-shadow: none;
-        pointer-events: none;
-    }
-
-    body.read-only .hint::after {
-        content: ' (Modo solo lectura)';
-        color: var(--accent-blue);
-        font-weight: 600;
-    }
-
-    /* Animations */
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { 
-        from { opacity: 0; transform: translateY(40px) scale(0.95); } 
-        to { opacity: 1; transform: translateY(0) scale(1); } 
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-        .login-modal { padding: 2rem 1.5rem; }
-        .modal-title { font-size: 1.4rem; }
-        .pozo-amount { font-size: 1.8rem; }
-        .attendance-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
-    }
-</style>
-</head>
-<body>
-
-<!-- LOGIN MODAL -->
-<div id="loginOverlay" class="login-overlay">
-    <div class="login-modal">
-        <div class="modal-logo"><i class="fas fa-coins"></i></div>
-        <h2 class="modal-title">Propinas Pro</h2>
-        <p class="modal-subtitle">Sistema de gestión y reparto</p>
-
-        <div id="roleSelector" class="role-selector">
-            <div class="role-btn master" onclick="showPinInput()">
-                <div class="role-icon"><i class="fas fa-crown"></i></div>
-                <div class="role-info">
-                    <h3>Entrar como máster</h3>
-                    <p>Administración total y edición</p>
-                </div>
-                <i class="fas fa-chevron-right arrow"></i>
-            </div>
-            <div class="role-btn client" onclick="loginAsClient()">
-                <div class="role-icon"><i class="fas fa-eye"></i></div>
-                <div class="role-info">
-                    <h3>Entrar como usuario</h3>
-                    <p>Visualización en solo lectura</p>
-                </div>
-                <i class="fas fa-chevron-right arrow"></i>
-            </div>
-        </div>
-
-        <div id="pinArea" class="pin-area">
-            <div class="input-group">
-                <i class="fas fa-lock"></i>
-                <input type="password" id="masterPin" placeholder="••••" maxlength="4" onkeypress="handleEnter(event)">
-            </div>
-            <p id="errorMsg" class="error-msg"><i class="fas fa-exclamation-circle"></i> PIN incorrecto</p>
-            <button class="btn-primary" onclick="verifyPin()">Desbloquear</button>
-            <button class="back-btn" onclick="backToRoles()"><i class="fas fa-arrow-left"></i> Volver</button>
-        </div>
-    </div>
-</div>
-
-<!-- MAIN APP -->
-<div id="appContainer" class="app-container">
-    <header class="app-header">
-        <h1>Propinas <span>Pro</span></h1>
-        <div class="header-right">
-            <div id="userBadge" class="user-badge"></div>
-            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Salir</button>
-        </div>
-    </header>
-
-    <main>
-        <!-- Pozo -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title"><i class="fas fa-wine-bottle"></i> Pozo</div>
-                <div class="pozo-amount">S/ 0.00</div>
-            </div>
-            <div class="pozo-stats">
-                <span><i class="far fa-calendar"></i> <span id="statDays">0</span> días</span>
-                <span><i class="fas fa-users"></i> <span id="statStaff">0</span> personal</span>
-            </div>
-        </div>
-
-        <!-- Personal -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title"><i class="fas fa-user-tie"></i> Personal</div>
-                <button class="btn-add editable-action" onclick="addStaff()"><i class="fas fa-plus"></i> Agregar</button>
-            </div>
-            <div id="staffList" class="empty-state">
-                <i class="fas fa-user-plus"></i>
-                Aún no hay personal registrado.
-            </div>
-        </div>
-
-        <!-- Asistencia -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title"><i class="fas fa-calendar-check"></i> Asistencia y propinas</div>
-            </div>
-            <div id="attendanceGrid" class="attendance-grid">
-                <!-- Celdas dinámicas -->
-            </div>
-            <p class="hint">Toca una celda para cambiar. Tarde y permiso no reciben ese día.</p>
-        </div>
-
-        <!-- Reparto -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title"><i class="fas fa-chart-pie"></i> Reparto automático</div>
-            </div>
-            <div id="summaryArea" class="empty-state">
-                <i class="fas fa-inbox"></i>
-                Aún no hay personal registrado.
-            </div>
-            <div class="status-saved"><i class="fas fa-check-circle"></i> Todo guardado ✓</div>
-            <button class="btn-save editable-action" onclick="saveData()"><i class="fas fa-save"></i> Guardar ahora</button>
-        </div>
-    </main>
-</div>
-
-<script>
-    const MASTER_PIN = "1234"; // Cambia este PIN por el que desees
-    let currentRole = null;
-    let staff = [];
-    let attendance = {}; // { nombre: 'presente'|'tarde'|'permiso' }
-
-    // --- LOGIN ---
-    function showPinInput() {
-        document.getElementById('roleSelector').classList.add('hidden');
-        document.getElementById('pinArea').classList.add('active');
-        setTimeout(() => document.getElementById('masterPin').focus(), 100);
-    }
-
-    function backToRoles() {
-        document.getElementById('roleSelector').classList.remove('hidden');
-        document.getElementById('pinArea').classList.remove('active');
-        document.getElementById('masterPin').value = '';
-        document.getElementById('errorMsg').style.display = 'none';
-    }
-
-    function handleEnter(event) {
-        if (event.key === 'Enter') verifyPin();
-    }
-
-    function verifyPin() {
-        const pin = document.getElementById('masterPin').value;
-        if (pin === MASTER_PIN) {
-            currentRole = 'master';
-            enterApp();
-        } else {
-            document.getElementById('errorMsg').style.display = 'block';
-            document.getElementById('masterPin').value = '';
-            document.getElementById('masterPin').focus();
-            // Shake effect
-            const input = document.getElementById('masterPin');
-            input.style.animation = 'none';
-            setTimeout(() => input.style.animation = 'shake 0.4s', 10);
-        }
-    }
-
-    function loginAsClient() {
         currentRole = 'client';
         enterApp();
     }
 
-    function enterApp(("cnt").textContent=S.people.length;
-  document.getElementById("ppl").innerHTML=S.people.map(function(p){return'<span class="chip"><span class="av">'+ini(p.name)+"</span>"+esc(p.name)+"</span>"}).join("");
-}
-function renderTable(){
-  var D=days(),tips=P().tips,ro=EDIT?"":' readonly tabindex="-1"',h="<tr><th>Día</th><th>Propina</th>"+S.people.map(function(p){return"<th>"+esc(p.name)+"</th>"}).join("")+"</tr>";
-  D.forEach(function(d){
-    h+='<tr class="'+(d.hoy?"hoy":"")+'"><td>'+d.l+(d.hoy?" ●":"")+'</td><td><input type="number" inputmode="decimal" min="0" step="0.01" placeholder="'+(EDIT?"0.00":"—")+'" data-tip="'+d.k+'" value="'+(tips[d.k]||"")+'"'+ro+"></td>";
-    S.people.forEach(function(p){
-      var s=st(d.k,p.id),c=s==="T"?"PT":s==="P"?"PP":"PO",t=s==="T"?"⏰":s==="P"?"📝":"✔";
-      h+='<td class="s" data-k="'+d.k+'" data-id="'+p.id+'"><span class="st '+c+'">'+t+"</span></td>";
-    });
-    h+="</tr>";
-  });
-  document.getElementById("tb").innerHTML=h;
-}
-function renderSummary(){
-  var D=days(),tips=P().tips,tot={},lost={},pozo=0,nd=0,orphan=0;
-  S.people.forEach(function(p){tot[p.id]={amt:0,days:0};lost[p.id]=[]});
-  D.forEach(function(d){
-    var t=+tips[d.k]||0;if(t>0)nd++;pozo+=t;
-    var el=S.people.filter(function(p){return!st(d.k,p.id)});
-    S.people.forEach(function(p){var s=st(d.k,p.id);if(s)lost[p.id].push(d.l+(s==="T"?" ⏰":" 📝"))});
-    if(t>0){if(!el.length){orphan+=t;return}el.forEach(function(p){tot[p.id].amt+=t/el.length;tot[p.id].days++})}
-  });
-  countTo(pozo);
-  document.getElementById("nd").textContent=nd;
-  var h="<tr><th>Persona</th><th>Días</th><th>Recibe</th><th>Sin propina</th></tr>";
-  S.people.forEach(function(p){h+='<tr><td><div class="who"><span class="av">'+ini(p.name)+'</span><span class="t">'+esc(p.name)+"</span></div></td><td>"+tot[p.id].days+'</td><td><span class="amt">'+money(tot[p.id].amt)+"</span></td><td style='white-space:normal;text-align:left;min-width:110px'>"+(lost[p.id].join(", ")||"—")+"</td></tr>"});
-  document.getElementById("sm").innerHTML=S.people.length?h:"";
-  document.getElementById("emp").style.display=S.people.length?"none":"block";
-  document.getElementById("warn").textContent=orphan>0?"⚠ "+money(orphan)+" sin repartir (nadie elegible ese día).":"";
-}
-function renderAll(){renderHead();renderPeople();renderTable();renderSummary()}
+    function enterApp() {
+        document.getElementById('loginOverlay').style.display = 'none';
+        document.getElementById('appContainer').style.display = 'block';
+        
+        const badge = document.getElementById('userBadge');
+        if (currentRole === 'master') {
+            badge.className = 'user-badge master';
+            badge.innerHTML = '<i class="fas fa-crown"></i> Máster';
+            document.body.classList.remove('read-only');
+        } else {
+            badge.className = 'user-badge client';
+            badge.innerHTML = '<i class="fas fa-eye"></i> Usuario';
+            document.body.classList.add('read-only');
+        }
+        renderAttendance();
+        renderSummary();
+    }
 
-// ---------- Datos en Supabase: todos leen, solo el máster escribe ----------
-function hdr(t){var h={apikey:SB_KEY,"Content-Type":"application/json"};if(t)h.Authorization="Bearer "+t;return h}
-function httpErr(r){var e=new Error("http"+r.status);e.status=r.status;return e}
-function saveSess(x){SESS=x;try{localStorage.setItem(KEY_S,JSON.stringify(x))}catch(e){}}
-function clearSess(){SESS=null;try{localStorage.removeItem(KEY_S)}catch(e){}}
-function authReq(grant,body){
-  return fetch(SB_URL+"/auth/v1/token?grant_type="+grant,{method:"POST",headers:hdr(),body:JSON.stringify(body)}).then(function(r){
-    return r.json().catch(function(){return{}}).then(function(d){if(!r.ok){var e=new Error(d.error_description||d.msg||"Error");e.status=r.status;throw e}return d});
-  });
-}
-function toSess(d){return{access_token:d.access_token,refresh_token:d.refresh_token,expires_at:Math.floor(Date.now()/1000)+(d.expires_in||3600),email:(d.user&&d.user.email)||(SESS&&SESS.email)||""}}
-function token(){
-  if(!SESS)return Promise.reject(new Error("sin sesión"));
-  if(SESS.expires_at-60>Date.now()/1000)return Promise.resolve(SESS.access_token);
-  return authReq("refresh_token",{refresh_token:SESS.refresh_token}).then(function(d){saveSess(toSess(d));return SESS.access_token});
-}
-function readState(){
-  return fetch(SB_URL+"/rest/v1/propinas_state?id=eq.1&select=state",{headers:hdr(),cache:"no-store"}).then(function(r){if(!r.ok)throw httpErr(r);return r.json()}).then(function(a){return(a[0]&&a[0].state)||{}});
-}
-function setBar(){
-  var s=document.getElementById("pst");
-  s.textContent=dirty?"● Cambios sin guardar":"Todo guardado ✓";s.className=dirty?"dirty":"";
-}
-function changed(){
-  dirty=true;setBar();
-  try{localStorage.setItem(KEY_D,JSON.stringify({s:S,dirty:true}))}catch(e){}
-  clearTimeout(saveT);saveT=setTimeout(saveNow,900); // guarda solo, sin botón
-}
-function saveNow(){
-  if(!EDIT)return;
-  clearTimeout(saveT);
-  if(saving){saveT=setTimeout(saveNow,400);return}
-  saving=true;document.getElementById("pst").textContent="Guardando…";
-  var snap=JSON.stringify(S);
-  token().then(function(t){
-    return fetch(SB_URL+"/rest/v1/propinas_state?id=eq.1",{method:"PATCH",headers:Object.assign(hdr(t),{Prefer:"return=representation"}),body:JSON.stringify({state:S,updated_at:new Date().toISOString()})});
-  }).then(function(r){
-    if(!r.ok)throw httpErr(r);
-    return r.json();
-  }).then(function(a){
-    if(!a.length){var e=new Error("sin permiso");e.status=403;throw e} // la política de seguridad no dejó escribir
-    saving=false;
-    if(JSON.stringify(S)===snap){dirty=false;try{localStorage.removeItem(KEY_D)}catch(e){}}
-    setBar();
-  }).catch(function(e){
-    saving=false;setBar();
-    if(e.status===401||e.status===403){toast("Sesión vencida o sin permiso. Sal y entra de nuevo")}
-    else{toast("No se pudo guardar. Reintentando…");clearTimeout(saveT);saveT=setTimeout(saveNow,8000)}
-  });
-}
-function load(){
-  readState().then(function(st0){
-    var d=null;if(EDIT){try{d=JSON.parse(localStorage.getItem(KEY_D))}catch(e){}}
-    if(EDIT&&d&&d.dirty){S=norm(d.s);dirty=true;setBar();saveNow();toast("Se guardaron cambios pendientes")}else{S=norm(st0);setBar()}
-    renderAll();
-  }).catch(function(){toast("No se pudieron cargar los datos");renderAll()});
-}
-function reload(){
-  readState().then(function(st0){var a=JSON.stringify(norm(st0)),b=JSON.stringify(S);if(a!==b){S=norm(st0);renderAll()}}).catch(function(){});
-}
+    function logout() {
+        currentRole = null;
+        document.getElementById('loginOverlay').style.display = 'flex';
+        document.getElementById('appContainer').style.display = 'none';
+        backToRoles();
+    }
 
-// ---------- Eventos (el máster solo agrega; el usuario solo ve) ----------
-document.getElementById("add").onclick=function(){
-  if(!EDIT)return;
-  var i=document.getElementById("nm"),n=i.value.trim();if(!n)return;
-  S.people.push({id:"p"+Date.now(),name:n});i.value="";changed();renderAll();
-};
-document.getElementById("nm").onkeydown=function(e){if(e.key==="Enter")document.getElementById("add").click()};
-document.getElementById("prev").onclick=function(){V--;renderAll()};
-document.getElementById("next").onclick=function(){if(V<0){V++;renderAll()}};
-document.getElementById("tb").onclick=function(e){
-  if(!EDIT)return;
-  var c=e.target.closest("td.s");if(!c)return;
-  var k=c.dataset.k,id=c.dataset.id,cur=st(k,id),nx=cur===""?"T":cur==="T"?"P":"",pd=P();
-  pd.att[k]=pd.att[k]||{};if(nx)pd.att[k][id]=nx;else delete pd.att[k][id];
-  changed();renderTable();renderSummary();
-};
-document.getElementById("tb").oninput=function(e){
-  if(!EDIT)return;
-  var k=e.target.getAttribute("data-tip");if(!k)return;
-  P().tips[k]=e.target.value;changed();renderSummary();
-};
-document.getElementById("pub").onclick=saveNow;
-window.addEventListener("beforeunload",function(e){if(dirty){e.preventDefault();e.returnValue=""}});
-var lastDay=iso(todayD());
-function tick(){var d=iso(todayD());if(d!==lastDay){lastDay=d;V=0;renderAll()}if(!EDIT&&!document.hidden)reload()}
-setInterval(tick,30000);
-document.addEventListener("visibilitychange",function(){if(!document.hidden)tick()});
+    // --- APP ---
+    function addStaff() {
+        const name = prompt('Nombre del personal:');
+        if (!name || !name.trim()) return;
+        const cleanName = name.trim();
+        if (staff.includes(cleanName)) { alert('Ya está registrado.'); return; }
+        staff.push(cleanName);
+        attendance[cleanName] = 'presente';
+        updateStats();
+        renderAttendance();
+        renderSummary();
+    }
 
-// ---------- Acceso: correo y contraseña del máster (Supabase Auth) ----------
-function badKey(k){
-  if(k.indexOf("sb_secret_")===0)return true;
-  try{return JSON.parse(atob(k.split(".")[1].replace(/-/g,"+").replace(/_/g,"/"))).role==="service_role"}catch(e){return false}
-}
-function checkMaster(){
-  return token().then(function(t){return fetch(SB_URL+"/rest/v1/rpc/es_master_propinas",{method:"POST",headers:hdr(t),body:"{}"})})
-    .then(function(r){if(!r.ok)throw httpErr(r);return r.json()}).then(function(v){return v===true});
-}
-function enter(master){
-  EDIT=master;document.body.classList.toggle("ro",!master);
-  document.getElementById("role").textContent=master?"👑 Máster":"👁 Usuario · solo lectura";
-  document.getElementById("foot").textContent=master?"Los cambios se guardan solos en la nube":"Vista de solo lectura";
-  document.getElementById("gate").hidden=true;
-  load();
-}
-document.getElementById("gu").onclick=function(){enter(false)};
-function masterLogin(){
-  var em=document.getElementById("gem").value.trim(),pw=document.getElementById("gpw").value,er=document.getElementById("gerr");er.textContent="";
-  if(!em||!pw)return;
-  authReq("password",{email:em,password:pw}).then(function(d){saveSess(toSess(d));return checkMaster()}).then(function(ok){
-    if(!ok){clearSess();er.textContent="Esa cuenta no es de máster";return}
-    document.getElementById("gpw").value="";enter(true);
-  }).catch(function(e){er.textContent=(e.status===400||e.status===401)?"Correo o contraseña incorrectos":"No se pudo conectar"});
-}
-document.getElementById("gm").onclick=masterLogin;
-document.getElementById("gpw").onkeydown=function(e){if(e.key==="Enter")masterLogin()};
-document.getElementById("gem").onkeydown=function(e){if(e.key==="Enter")document.getElementById("gpw").focus()};
-document.getElementById("out").onclick=function(){clearSess();location.reload()};
+    function updateStats() {
+        document.getElementById('statStaff').textContent = staff.length;
+        document.getElementById('statDays').textContent = staff.length > 0 ? 1 : 0;
+    }
 
-renderAll();
-SB_URL=SB_URL.replace(/\/+$/,"");
-var CFG_OK=/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(SB_URL)&&SB_URL.toUpperCase().indexOf("TU-"+"PROYECTO")<0&&SB_KEY.length>20&&SB_KEY.indexOf("TU_"+"CLAVE")!==0;
-if(!CFG_OK){
-  document.getElementById("gerr").textContent="Falta configurar SB_URL y SB_KEY en index.html";
-}else if(badKey(SB_KEY)){
-  SB_KEY="";document.getElementById("gerr").textContent="Esa es una clave secreta. Usa la clave pública (anon o publishable)";
-}else{
-  try{SESS=JSON.parse(localStorage.getItem(KEY_S))}catch(e){SESS=null}
-  if(SESS)checkMaster().then(function(ok){if(ok)enter(true);else clearSess()}).catch(function(){});
-}
+    function renderAttendance() {
+        const grid = document.getElementById('attendanceGrid');
+        if (staff.length === 0) {
+            grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;">Agrega personal para registrar asistencia.</div>';
+            return;
+        }
+        grid.innerHTML = '';
+        staff.forEach(name => {
+            const status = attendance[name] || 'presente';
+            const cell = document.createElement('div');
+            cell.className = `att-cell ${status} editable-action`;
+            let emoji = '✔', label = 'Presente';
+            if (status === 'tarde') { emoji = '⏰'; label = 'Tarde'; }
+            if (status === 'permiso') { emoji = '📝'; label = 'Permiso'; }
+            cell.innerHTML = `<span class="att-emoji">${emoji}</span>${name}<br><small>${label}</small>`;
+            cell.addEventListener('click', () => cycleAttendance(name));
+            grid.appendChild(cell);
+        });
+    }
+
+    function cycleAttendance(name) {
+        if (document.body.classList.contains('read-only')) return;
+        const current = attendance[name];
+        if (current === 'presente') attendance[name] = 'tarde';
+        else if (current === 'tarde') attendance[name] = 'permiso';
+        else attendance[name] = 'presente';
+        renderAttendance();
+        renderSummary();
+    }
+
+    function renderSummary() {
+        const area = document.getElementById('summaryArea');
+        if (staff.length === 0) {
+            area.innerHTML = 'Aún no hay personal registrado.';
+            return;
+        }
+        const presentes = staff.filter(n => attendance[n] === 'presente').length;
+        const tardes = staff.filter(n => attendance[n] === 'tarde').length;
+        const permisos = staff.filter(n => attendance[n] === 'permiso').length;
+        area.innerHTML = `
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;text-align:center;">
+                <div style="padding:0.8rem;background:rgba(16,185,129,0.08);border-radius:12px;border:1px solid rgba(16,185,129,0.2);">
+                    <div style="font-size:1.5rem;font-weight:700;color:var(--success);">${presentes}</div>
+                    <div style="font-size:0.75rem;color:var(--text-secondary);">Presentes</div>
+                </div>
+                <div style="padding:0.8rem;background:rgba(245,158,11,0.08);border-radius:12px;border:1px solid rgba(245,158,11,0.2);">
+                    <div style="font-size:1.5rem;font-weight:700;color:var(--accent-gold);">${tardes}</div>
+                    <div style="font-size:0.75rem;color:var(--text-secondary);">Tardes</div>
+                </div>
+                <div style="padding:0.8rem;background:rgba(107,114,128,0.08);border-radius:12px;border:1px solid rgba(107,114,128,0.2);">
+                    <div style="font-size:1.5rem;font-weight:700;color:var(--text-secondary);">${permisos}</div>
+                    <div style="font-size:0.75rem;color:var(--text-secondary);">Permisos</div>
+                </div>
+            </div>
+        `;
+    }
+
+    function saveData() {
+        if (document.body.classList.contains('read-only')) return;
+        const btn = document.querySelector('.btn-save');
+        const original = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> ¡Guardado!';
+        btn.style.background = 'linear-gradient(135deg, #10B981, #059669)';
+        setTimeout(() => { btn.innerHTML = original; btn.style.background = ''; }, 1500);
+    }
 </script>
+
 </body>
 </html>
